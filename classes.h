@@ -59,7 +59,7 @@ int gcd(int a, int b)
 
    cout << "You've created the subset of units U" << groupSize << endl << endl; 
    
-   for(int j = 1; j < units.size(); j++){
+   for(int j = 0; j < units.size(); j++){
 
      cout << units.at(j) << " "; 
    }
@@ -67,8 +67,13 @@ int gcd(int a, int b)
    cout << endl << endl << "To check if this is a subgroup, we check the following criteria: \n \n (i) If a, b is in H, then ab is in H \n (ii) If a is in H, then a^{-1} is in H" << endl << endl; 
 
 
- // closure(units); 
- 
+  closure(units); 
+
+  cout << endl << "This set is closed under multiplication." << endl << endl; 
+
+   inverses(units); 
+
+   cout << endl << " The inverses of each element are found in U" << groupSize << endl; 
  }
 
 //Print a vector 
@@ -95,18 +100,16 @@ bool find(vector<int> v, int element){
 }
 
 //Check U groupSize for closure under multiplication 
-/*
-Add code to elapse time as it checks for each product in the vector. The elapsed time should print out if every permutation is successful. Otherwise, the program will stop and print "not closed under *". 
-*/
   void closure(vector<int> sub){
 
      int product = 0; 
      int count = 0; 
-       // Using time point and system_clock
+     
     std::chrono::time_point<std::chrono::system_clock> start, end;
   
     start = std::chrono::system_clock::now();
-    
+
+    //Loop to check every possible combination of integers in the subset
   do{
 
      product = (sub[sub.size() - 1] * sub[sub.size() - 2]) % groupSize; 
@@ -114,7 +117,8 @@ Add code to elapse time as it checks for each product in the vector. The elapsed
       if(!find(sub, product)){
 
       cout << "This subset is not closed under multiplication." << endl;
-      
+      return; 
+        
       }else{
 
       cout << sub[sub.size() - 1] << " * " << sub[sub.size() - 2] << " = " << (sub[sub.size() - 1] *       
@@ -129,8 +133,54 @@ Add code to elapse time as it checks for each product in the vector. The elapsed
     std::chrono::duration<double> elapsed_seconds = end - start;
     std::time_t end_time = std::chrono::system_clock::to_time_t(end);
 
-      std::cout << endl << "Elapsed Time: " << elapsed_seconds.count() << "s\n";
-}
+    std::cout << endl << "Elapsed Time: " << elapsed_seconds.count() << "s\n";
+     
+  }
+
+void cyclicalSub(int num){
 
   
+}
+
+void inverses(vector<int> sub){
+
+    int product = 0; 
+    int p2 = 0; 
+     int count = 0; 
+     
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+    start = std::chrono::system_clock::now();
+
+    //Loop to check every possible combination of integers in the subset
+  do{
+
+     product = (sub[sub.size() - 1] * sub[sub.size() - 2]) % groupSize; 
+     p2 = (sub[sub.size() - 1] * sub[sub.size() - 1]) % groupSize;
+     
+     if(p2 == 1){
+
+         cout << sub[sub.size() - 1] << " * " << sub[sub.size() - 1] << " = " << 
+         (sub[sub.size() - 1] *       
+         sub[sub.size() - 1]) << " = " << p2 << endl; 
+       
+     }else if(product == 1){
+
+       cout << sub[sub.size() - 1] << " * " << sub[sub.size() - 2] << " = " << 
+       (sub[sub.size() - 1] *       
+       sub[sub.size() - 2]) << " = " << product << endl; 
+        
+      }
+    
+    }while(next_permutation(sub.begin(), sub.end())); 
+  
+   end = std::chrono::system_clock::now();  
+
+    std::chrono::duration<double> elapsed_seconds = end - start;
+    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+
+    std::cout << endl << "Elapsed Time: " << elapsed_seconds.count() << "s\n"; 
+}
+
+
+
 };
