@@ -1,0 +1,67 @@
+closure function: 
+subsize = subgroup.size(); 
+count = 0; 
+
+1) Check iterator i against every element in subgroup 
+2) if(i * subgroup.at(i))
+
+
+
+ for(auto i : units){
+
+     print(units); 
+     cout << endl; 
+     next_permutation(units.begin(), units.end());
+    
+    }
+
+
+
+vector<int>::iterator find(vector<int> v, int element){
+
+  vector<int>::iterator it; 
+  int found = 0; 
+  it = ::find(v.begin(), v.end(), element); 
+
+  if(it != v.end()){
+
+   // cout << element << endl; 
+    return it; 
+  }
+  //return it; 
+}
+
+
+do{
+
+     print(subgroup); 
+     cout << endl;
+   }while(next_permutation(subgroup.begin(), subgroup.end())); 
+
+
+   int sum = 0; 
+int count = 0; 
+  do{
+
+   sum = (units[units.size() - 1] + units[units.size() - 2]) % groupSize; 
+  // mod = sum % groupSize; 
+  //  if(mod == find(units, sum)); 
+  //  cout << sum << endl; 
+
+    while(count < units.size()){
+
+      if(find(units, sum)){
+
+        count+=1;
+        cout << count << endl; 
+      }
+    
+      }
+    }while(next_permutation(units.begin(), units.end())); 
+  }
+
+
+  std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
+std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << "[ns]" << std::endl;
+
+  std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[ns]" << std::endl;
