@@ -2,6 +2,7 @@
 #include <vector> 
 #include <algorithm>
 #include <chrono>
+#include <math.h> 
 using namespace std; 
 
 class Group{
@@ -29,7 +30,7 @@ class Group{
     }
 
 
-    cout << endl << endl << "You've created the group Z* mod " << groupSize << endl; 
+    cout << endl << endl << "You've created the group Z* mod " << groupSize << " of order " << groupSize << endl; 
   }
 
 //Find gcd of two numbers 
@@ -74,7 +75,10 @@ int gcd(int a, int b)
    inverses(units); 
 
    cout << endl << " The inverses of each element are found in U" << groupSize << endl; 
- }
+
+   cout << endl << endl << "Thus, U" << groupSize << " is a subgroup of Z* mod " << groupSize << " of order " << units.size() << endl; 
+     
+  }
 
 //Print a vector 
 void print(vector<int> v){
@@ -137,11 +141,34 @@ bool find(vector<int> v, int element){
      
   }
 
-void cyclicalSub(int num){
+//Create a cyclical subgroup 
+  void cyclicSub(int num){
 
-  
+    int count = 0; 
+    int exp = 0; 
+
+  cout << endl << "Generating the cyclic subgroup " << "<" << num << "> ...";
+   exp += num; 
+
+  cout << " { "; 
+    do{
+
+     
+      cout << exp % groupSize << ", "; 
+      exp *= num; 
+      count += 1; 
+      
+    }while((exp % groupSize) != 1); 
+
+    count += 1; 
+    
+    cout << exp % groupSize << " }" << endl << endl; 
+
+    cout << "<" << num << ">" << " has order " << count; 
 }
 
+
+//Verify inverses of a subgroup 
 void inverses(vector<int> sub){
 
     int product = 0; 

@@ -58,7 +58,13 @@ int main() {
   
   group->createSubGroup(); 
 
+  int userInput2;
 
+  cout << endl << "Enter an element to generate a cyclic subgroup from: " << endl; 
+  
+  cin >> userInput2; 
+  
+  group->cyclicSub(userInput2); 
   
    
   //  end = std::chrono::system_clock::now();
